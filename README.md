@@ -14,14 +14,17 @@
         padding: 0 15px;
     }
 
-    /* Footnote marker */
-    .fn {
-        color: #005bbb;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 0.8em;
-        vertical-align: super;
-        margin-left: 2px;
+  /* Footnote marker */
+.fn {
+    color: #005bbb;
+    cursor: pointer;
+    font-weight: normal;     
+    font-size: 1em;       
+    vertical-align: super;
+    margin-left: 2px;
+    text-decoration: none;   /* no underline */
+}
+
     }
 
     /* Hidden panel container */
