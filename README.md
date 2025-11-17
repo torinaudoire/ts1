@@ -21,13 +21,13 @@ body {
 
 /* Dynamically inserted footnote container */
 .fn-inserted {
-    display: block; /* so it pushes text */
+    display: block; /* Ensure it pushes text */
     background: #f0f4ff;
     border-left: 3px solid #005bbb;
     padding: 8px 12px;
     margin: 4px 0 12px 0;
 
-    /* Start with 0 height for the transition */
+    /* Start with 0 height for smooth transition */
     height: 0;
     opacity: 0;
     overflow: hidden;
@@ -42,8 +42,6 @@ body {
 </style>
 </head>
 <body>
-
-<h1>Miss Mu and the Canary</h1>
 
 <p>
 “<span class="fn" data-fn="1">Yan’er</span>, I’m not like you. I was ten years old when I was sold into this cesspit. Everything there is to see, I’ve seen. In a place as dark and corrupt as this, for whores and clients alike, the rarest treasure is a taste of true affection. How happy you were when you were with her — I saw it all.” Fei Hua spoke clearly and deliberately. “But love can’t be eaten at the end of the day. Never mind her reasons for deceiving you — even if she really has feelings for you, what kind of future can you have together? She might keep you for a time, even buy your freedom from this place. But she’s the eldest daughter of the Mu family. Eventually the day will come when she must marry. If it were to a man, he might take you as a <span class="fn" data-fn="2">concubine</span>… But would you really marry into his household along with her? Then what else could you do? Come back here to the brothel?”
@@ -94,4 +92,32 @@ const footnotes = {
 };
 
 // Insert footnote dynamically on hover
-d
+document.querySelectorAll('.fn').forEach(el => {
+    let inserted = null;
+
+    el.addEventListener('mouseenter', () => {
+        if (!inserted) {
+            inserted = document.createElement('span');
+            inserted.className = 'fn-inserted';
+            inserted.textContent = footnotes[el.dataset.fn];
+            el.after(inserted);
+
+            // Add 'visible' class to trigger transition
+            setTimeout(() => inserted.classList.add('visible'), 10); // Ensures the transition works
+        }
+    });
+
+    el.addEventListener('mouseleave', () => {
+        if (inserted) {
+            inserted.classList.remove('visible'); // Start the hiding transition
+            setTimeout(() => {
+                inserted.remove(); // Remove the footnote after the transition
+                inserted = null;
+            }, 350); // Delay to match transition time
+        }
+    });
+});
+</script>
+
+</body>
+</html>
