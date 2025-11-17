@@ -23,18 +23,17 @@
 
         /* Popup content (collapsed by default) */
         .fn-content {
-            max-height: 0;
+            max-height: 0;  /* initially hidden */
+            opacity: 0;     /* make invisible */
             overflow: hidden;
+            transform: scaleY(0); /* collapse */
+            transform-origin: top;
             display: block;
             background: #f0f4ff;
             border-left: 3px solid #005bbb;
             padding: 0 12px;
             margin: 0;
-            opacity: 0;
-            transform: scaleY(0.95);
-            transform-origin: top;
             transition: 
-                max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1),
                 opacity 0.3s ease-in-out, 
                 transform 0.35s ease;
             border-radius: 4px;
@@ -43,7 +42,7 @@
         /* Hover effect: expand footnote */
         .fn-wrapper:hover .fn-content {
             opacity: 1;
-            transform: scaleY(1);
+            transform: scaleY(1); /* expand */
             margin-top: 4px;
         }
     </style>
@@ -94,18 +93,23 @@
 <p>At least this affair ending here meant she could still keep the sweetness of the past, and in the dark days to come might avail herself of its comfort.</p>
 
 <script>
+    // JavaScript for expanding/collapsing footnotes dynamically
     document.querySelectorAll('.fn-wrapper').forEach(wrapper => {
         wrapper.addEventListener('mouseover', () => {
             const content = wrapper.querySelector('.fn-content');
-            // Dynamically set the max-height of the footnote on hover
+            // Set the footnote content's height dynamically
             const contentHeight = content.scrollHeight;
             content.style.maxHeight = `${contentHeight}px`;
+            content.style.opacity = 1;
+            content.style.transform = 'scaleY(1)';
         });
 
         wrapper.addEventListener('mouseleave', () => {
             const content = wrapper.querySelector('.fn-content');
-            // Reset max-height when hover ends
+            // Reset to collapse the footnote
             content.style.maxHeight = '0';
+            content.style.opacity = 0;
+            content.style.transform = 'scaleY(0)';
         });
     });
 </script>
