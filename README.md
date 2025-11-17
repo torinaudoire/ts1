@@ -13,31 +13,19 @@ body {
     padding: 0 15px;
 }
 
-/* Footnote trigger inline text */
+/* fn trigger inline text */
 .fn {
     color: #005bbb;
     cursor: pointer;
 }
 
-/* Dynamically inserted footnote container */
+/* fn container */
 .fn-inserted {
-    display: block; /* Ensure it pushes text */
+    display: block; 
     background: #f0f4ff;
     border-left: 3px solid #005bbb;
     padding: 8px 12px;
     margin: 4px 0 12px 0;
-
-    /* Start with 0 height for smooth transition */
-    height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: height 0.35s ease, opacity 0.35s ease; /* Smooth transition */
-}
-
-/* When footnote is inserted (visible), apply expanded styles */
-.fn-inserted.visible {
-    height: auto; /* Allow full height */
-    opacity: 1;   /* Fade in the footnote */
 }
 </style>
 </head>
@@ -91,7 +79,7 @@ const footnotes = {
     "5": "固若金汤, an idiom meaning \"secure as a city surrounded by metal walls and boiling water\"."
 };
 
-// Insert footnote dynamically on hover
+// insert fn on hover
 document.querySelectorAll('.fn').forEach(el => {
     let inserted = null;
 
@@ -101,19 +89,13 @@ document.querySelectorAll('.fn').forEach(el => {
             inserted.className = 'fn-inserted';
             inserted.textContent = footnotes[el.dataset.fn];
             el.after(inserted);
-
-            // Add 'visible' class to trigger transition
-            setTimeout(() => inserted.classList.add('visible'), 10); // Ensures the transition works
         }
     });
 
     el.addEventListener('mouseleave', () => {
         if (inserted) {
-            inserted.classList.remove('visible'); // Start the hiding transition
-            setTimeout(() => {
-                inserted.remove(); // Remove the footnote after the transition
-                inserted = null;
-            }, 350); // Delay to match transition time
+            inserted.remove();
+            inserted = null;
         }
     });
 });
@@ -121,3 +103,4 @@ document.querySelectorAll('.fn').forEach(el => {
 
 </body>
 </html>
+![Uploading image.png…]()
