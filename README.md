@@ -27,23 +27,27 @@
         text-decoration: none;
     }
 
-    /* Popup content — initially collapsed */
-    .fn-popup {
-        display: block;
-        max-height: 0;
-        overflow: hidden;
-        background: #f0f4ff;
-        border-left: 3px solid #005bbb;
-        padding: 0 12px;
-        margin-top: 4px;
-        transition: max-height 0.25s ease, padding 0.25s ease;
-    }
+  .fn-popup {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    background: #f0f4ff;
+    border-left: 3px solid #005bbb;
 
-    /* Expand on hover */
-    .fn-wrapper:hover .fn-popup {
-        max-height: 300px;
-        padding: 12px;
-    }
+    /* Remove all spacing when collapsed */
+    padding: 0;
+    margin: 0;
+
+    transition: max-height 0.25s ease, padding 0.25s ease, margin 0.25s ease;
+}
+
+/* Expand only on hover */
+.fn-wrapper:hover .fn-popup {
+    max-height: 300px;
+    padding: 12px;
+    margin-top: 4px;
+}
+
 </style>
 </head>
 
