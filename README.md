@@ -19,35 +19,36 @@
         position: relative;
     }
 
-    /* Footnote marker (discreet) */
+    /* Footnote marker — same size and baseline as text, only color changes */
     .fn {
         color: #005bbb;
         cursor: pointer;
-        margin-left: 2px;
+        font-size: 1em; /* same as body text */
+        vertical-align: baseline; /* normal baseline */
         text-decoration: none;
     }
 
-  .fn-popup {
-    display: block;
-    max-height: 0;
-    overflow: hidden;
-    background: #f0f4ff;
-    border-left: 3px solid #005bbb;
+    /* Popup content — initially collapsed, zero spacing */
+    .fn-popup {
+        display: block;
+        max-height: 0;
+        overflow: hidden;
+        background: #f0f4ff;
+        border-left: 3px solid #005bbb;
 
-    /* Remove all spacing when collapsed */
-    padding: 0;
-    margin: 0;
+        /* Remove spacing when collapsed */
+        padding: 0;
+        margin: 0;
 
-    transition: max-height 0.25s ease, padding 0.25s ease, margin 0.25s ease;
-}
+        transition: max-height 0.25s ease, padding 0.25s ease, margin 0.25s ease;
+    }
 
-/* Expand only on hover */
-.fn-wrapper:hover .fn-popup {
-    max-height: 300px;
-    padding: 12px;
-    margin-top: 4px;
-}
-
+    /* Expand only on hover */
+    .fn-wrapper:hover .fn-popup {
+        max-height: 300px; /* adjust for your longest footnote */
+        padding: 12px;
+        margin-top: 4px;
+    }
 </style>
 </head>
 
