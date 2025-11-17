@@ -26,6 +26,18 @@ body {
     border-left: 3px solid #005bbb;
     padding: 8px 12px;
     margin: 4px 0 12px 0;
+
+    /* Start with 0 height for the transition */
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: height 0.35s ease, opacity 0.35s ease; /* Smooth transition */
+}
+
+/* When footnote is inserted (visible), apply expanded styles */
+.fn-inserted.visible {
+    height: auto; /* Allow full height */
+    opacity: 1;   /* Fade in the footnote */
 }
 </style>
 </head>
@@ -59,7 +71,7 @@ That was right. She, too, hadn’t gotten close to Mu Xing out of love; she had 
 <p>How could she have forgotten? Her original motive had simply been to find some kind of refuge.</p>
 
 <p>
-Once, she had been able to use that nobleman’s name as a stepping stone without regard for face or feeling; had discarded <span class="fn" data-fn="4">Cui-shaoye</span> with no hesitation; now, surely, she could do so again.
+Once, she had been able to use that nobleman’s name as a stepping stone without regard for face or feeling; had discarded Cui-<span class="fn" data-fn="4">shaoye</span> with no hesitation; now, surely, she could do so again.
 </p>
 
 <p>
@@ -82,26 +94,4 @@ const footnotes = {
 };
 
 // Insert footnote dynamically on hover
-document.querySelectorAll('.fn').forEach(el => {
-    let inserted = null;
-
-    el.addEventListener('mouseenter', () => {
-        if (!inserted) {
-            inserted = document.createElement('span');
-            inserted.className = 'fn-inserted';
-            inserted.textContent = footnotes[el.dataset.fn];
-            el.after(inserted);
-        }
-    });
-
-    el.addEventListener('mouseleave', () => {
-        if (inserted) {
-            inserted.remove();
-            inserted = null;
-        }
-    });
-});
-</script>
-
-</body>
-</html>
+d
