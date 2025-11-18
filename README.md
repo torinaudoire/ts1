@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -13,45 +14,48 @@ body {
     padding: 0 15px;
 }
 
-/* fn trigger inline text */
+/* inline trigger */
 .fn {
     color: #005bbb;
     cursor: pointer;
 }
 
-/* fn container */
+/* animated inline footnote block */
 .fn-inserted {
+    display: block;
     background: #f0f4ff;
     border-left: 3px solid #005bbb;
 
+    /* start-state */
     overflow: hidden;
     max-height: 0;
     opacity: 0;
     padding: 0 12px;
     margin: 0;
-
     transform: translateY(-4px);
 
     transition:
-        max-height 0.3s ease,
-        opacity 0.3s ease,
-        padding 0.3s ease,
-        margin 0.3s ease,
-        transform 0.3s ease;
+        max-height 0.25s ease,
+        opacity 0.25s ease,
+        padding 0.25s ease,
+        margin 0.25s ease,
+        transform 0.25s ease;
 }
 
+/* end-state (visible) */
 .fn-inserted.show {
-    max-height: 500px; /* bigger than any expected note */
+    max-height: 500px; /* larger than any expected footnote */
     opacity: 1;
     padding: 8px 12px;
     margin: 4px 0 12px 0;
     transform: translateY(0);
 }
-
 </style>
 </head>
+
 <body>
 <h1>Miss Mu and the Canary</h1>
+
 <p>
 “<span class="fn" data-fn="1">Yan’er,</span> I’m not like you. I was ten years old when I was sold into this cesspit. Everything there is to see, I’ve seen. In a place as dark and corrupt as this, for whores and clients alike, the rarest treasure is a taste of true affection. How happy you were when you were with her — I saw it all.” Fei Hua spoke clearly and deliberately. “But love can’t be eaten at the end of the day. Never mind her reasons for deceiving you — even if she really has feelings for you, what kind of future can you have together? She might keep you for a time, even buy your freedom from this place. But she’s the eldest daughter of the Mu family. Eventually the day will come when she must marry. If it were to a man, he might take you as a <span class="fn" data-fn="2">concubine</span>… But would you really marry into his household along with her? Then what else could you do? Come back here to the brothel?”
 </p>
@@ -60,13 +64,18 @@ body {
 The hand holding the letter tightened abruptly. The paper could not withstand the force, and began to crumple inch by inch.
 </p>
 
-<p>Yes… Bai Yan thought absently. Were these days of anguish because she couldn’t accept Mu Xing’s gender? Or because she was wounded by Mu Xing’s betrayal? Or was it that…?</p>
+<p>
+Yes… Bai Yan thought absently. Were these days of anguish because she couldn’t accept Mu Xing’s gender? Or because she was wounded by Mu Xing’s betrayal? Or was it that…?
+</p>
 
 <p>Mu Xing… was getting married.</p>
 
-<p>No matter how she felt or how Mu Xing felt, that opulent wedding gown had made the choice for both of them long ago, hadn’t it?</p>
+<p>
+No matter how she felt or how Mu Xing felt, that opulent wedding gown had made the choice for both of them long ago, hadn’t it?
+</p>
 
-<p>Fei Hua patted her shoulder and spoke each word carefully: “They say whores are heartless and actors faithless. Yan’er, whether or not you would accept her, remember your original intentions. We don’t take clients for love and sentiment. At such a crucial moment, don’t go astray. Miss Mu can act without restraint, but for you and me, there’s long since been no such second path.”
+<p>
+Fei Hua patted her shoulder and spoke each word carefully: “They say whores are heartless and actors faithless. Yan’er, whether or not you would accept her, remember your original intentions. We don’t take clients for love and sentiment. At such a crucial moment, don’t go astray. Miss Mu can act without restraint, but for you and me, there’s long since been no such second path.”
 </p>
 
 <p>Bai Yan stared blankly into space for a moment, and then let out a mocking laugh.</p>
@@ -75,7 +84,9 @@ The hand holding the letter tightened abruptly. The paper could not withstand th
 That was right. She, too, hadn’t gotten close to Mu Xing out of love; she had only <span class="fn" data-fn="3">found a stage upon which to act out her performance</span>. It was true that Mu Xing had lied to her, but had she herself been sincere from the beginning?
 </p>
 
-<p>How could she have forgotten? Her original motive had simply been to find some kind of refuge.</p>
+<p>
+How could she have forgotten? Her original motive had simply been to find some kind of refuge.
+</p>
 
 <p>
 Once, she had been able to use that nobleman’s name as a stepping stone without regard for face or feeling; had discarded Cui-<span class="fn" data-fn="4">shaoye</span> with no hesitation; now, surely, she could do so again.
@@ -85,11 +96,17 @@ Once, she had been able to use that nobleman’s name as a stepping stone withou
 No matter how humiliating the ending of this farce might be, Mu Xing could still escape unscathed, return to her <span class="fn" data-fn="5">unassailable</span> life, clad herself in wedding finery, and become someone else’s wife.
 </p>
 
-<p>And what about Bai Yan? What would she be left with in the end?</p>
+<p>
+And what about Bai Yan? What would she be left with in the end?
+</p>
 
-<p>A wedding dress, a ring, and a memory without closure?</p>
+<p>
+A wedding dress, a ring, and a memory without closure?
+</p>
 
-<p>At least this affair ending here meant she could still keep the sweetness of the past, and in the dark days to come might avail herself of its comfort.</p>
+<p>
+At least this affair ending here meant she could still keep the sweetness of the past, and in the dark days to come might avail herself of its comfort.
+</p>
 
 <script>
 const footnotes = {
@@ -100,23 +117,35 @@ const footnotes = {
     "5": "固若金汤, an idiom meaning \"secure as a city surrounded by metal walls and boiling water\"."
 };
 
-// insert fn on hover
+// Smooth inline expanding/collapsing footnotes
 document.querySelectorAll('.fn').forEach(el => {
     let inserted = null;
 
     el.addEventListener('mouseenter', () => {
         if (!inserted) {
-            inserted = document.createElement('span');
+            inserted = document.createElement('div');
             inserted.className = 'fn-inserted';
             inserted.textContent = footnotes[el.dataset.fn];
             el.after(inserted);
+
+            // allow initial 0-height state to render
+            requestAnimationFrame(() => {
+                inserted.classList.add('show');
+            });
         }
     });
 
     el.addEventListener('mouseleave', () => {
         if (inserted) {
-            inserted.remove();
-            inserted = null;
+            inserted.classList.remove('show'); // collapse animation
+
+            inserted.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'max-height') {
+                    inserted.removeEventListener('transitionend', handler);
+                    inserted.remove();
+                    inserted = null;
+                }
+            });
         }
     });
 });
