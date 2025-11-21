@@ -104,16 +104,16 @@ A wedding dress, a ring, and a memory without closure?
 </p>
 
 <p>
-At least this affair ending here meant she could still keep the sweetness of the past, and in the dark days to come might avail herself of its comfort.
+At least this affair ending here meant she might yet preserve the sweetness of the past, and in the dark days to come avail herself of its comfort.
 </p>
 
 <script>
 const footnotes = {
-    "1": "艳儿 Yan'er, a diminutive and affectionate nickname for Bai Yan.",
-    "2": "In the Republican era it was still legal for men to take additional concubines alongside their primary wife, but these concubines were of lower status. It was often seen by elite families as a backwards practice compared to increasingly popular Western norms of monogamy.",
-    "3": "逢场作戏 (\"find a stage and put on a show\"). This idiom usually refers to playing along or going through the motions.",
-    "4": "少爷, a title used for sons of noble or wealthy families.",
-    "5": "固若金汤, an idiom meaning \"secure as a city surrounded by metal walls and boiling water\"."
+    "1": "艳儿 Yan'er, a diminutive nickname for Bai Yan.",
+    "2": "In the Republican era it was legal for men to take additional concubines alongside their primary wife, but these concubines held lower status.",
+    "3": "逢场作戏 (\"find a stage and put on a show\"). This idiom usually refers to playing along with a situation.",
+    "4": "少爷, a title used for sons of wealthy families.",
+    "5": "固若金汤, meaning \"secure as a city surrounded by metal walls and boiling water\"."
 };
 
 // transition
